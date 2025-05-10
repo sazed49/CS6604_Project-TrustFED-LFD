@@ -1,50 +1,41 @@
-# LFighter: Defending against Label-flipping Attacks in Federated Learning.
-This repository contains PyTorch implementation of the paper ''LFighter: Defending against Label-flipping Attacks in Federated Learning''.
+# TrustFED-LFD: Trust-Aware Label-Flip Detection in Federated Learning
 
-## Paper 
+This repository provides the official PyTorch implementation of **TrustFED-LFD**, a robust federated learning framework designed to detect and defend against label-flipping attacks in both IID and non-IID environments.
 
-[LFighter: Defending against Label-flipping Attacks in Federated Learning]()
+## Paper
 
-## Content
-The repository contains one jupyter notebook for each benchmark which can be used to re-produce the experiments reported in the paper for that benchmark. The notebooks contain clear instructions on how to run the experiments. 
+[TrustFed-LFD: A Trust-Weighted Aggregation Method for Label-Flip Detection in Federated Learning for Underground Mining Security](#)  
+(*Link will be updated upon publication*)
 
-## Data sets
-[MNIST](http://yann.lecun.com/exdb/mnist/) and [CIFAR10](https://www.cs.toronto.edu/~kriz/cifar.html) will be automatically downloaded.
-However, [IMDB](https://ai.stanford.edu/~amaas/data/sentiment/) requires a manual download using this [link](https://drive.google.com/file/d/1CpT7RbswI-pGd4rVfWsgONf7qJQizON0/view?usp=sharing). 
-After downloading [IMDB](https://ai.stanford.edu/~amaas/data/sentiment/), please save it as imdb.csv in the data folder inside the folder IMDB.
+## Overview
 
+TrustFED-LFD introduces a novel trust-weighted aggregation mechanism that dynamically estimates the reliability of client updates based on the historical behavior of their gradient statistics and cluster-based proximity. It is capable of detecting malicious clients launching **label-flipping attacks** and ensures accurate model convergence even under severe data heterogeneity and adversarial presence.
+
+## Datasets
+
+The following datasets are supported and used in the experiments:
+
+- [MNIST](http://yann.lecun.com/exdb/mnist/) — Auto-downloads
+- [CIFAR10](https://www.cs.toronto.edu/~kriz/cifar.html) — Auto-downloads
+- [IMDB](https://ai.stanford.edu/~amaas/data/sentiment/) — Manual download required from [this link](https://drive.google.com/file/d/1CpT7RbswI-pGd4rVfWsgONf7qJQizON0/view?usp=sharing).  
+  Please rename it to `imdb.csv` and place it inside the `data/IMDB/` directory.
+
+## Running the Code
+
+Each dataset has a corresponding Jupyter notebook or Python script that reproduces the results reported in our experiments. Detailed instructions are provided inside each script to configure:
+
+- Data distribution (IID or non-IID via Dirichlet)
+- Attack ratio and behavior (label flip attacker configuration)
+- Aggregation method selection (FedAvg, Median, Tmean, TrustFED-LFD)
 
 ## Dependencies
 
-[Python 3.6](https://www.anaconda.com/download)
+- Python 3.6+
+- PyTorch 1.6+
+- TensorFlow 2.x
+- scikit-learn
+- NumPy, pandas, matplotlib
 
-[PyTorch 1.6](https://pytorch.org/)
-
-[TensorFlow 2](https://www.tensorflow.org/)
-
-
-## Results
-
-### Robustness
-*The table below shows LFighter's robustness to the label-flipping attack with 40% attackers.* </br></br>
-<img src="figures/main_results.PNG" width="100%">
-
-
-
-
-### Accuracy stability
-*The figure below shows the source class stability under the label-flipping attack with 40% attackers for the CIFAR10-ResNet18-non-IID and IMDB-BiLSTM benchmarks.* </br></br>
-<img src="figures/stability_all.PNG" width="100%">
-
-
-
-
-
-
-## Citation 
-Jebreel, N. M., Domingo-Ferrer, J., Sánchez, D., & Blanco-Justicia, A. (2024). LFighter: Defending against the label-flipping attack in federated learning. Neural Networks, 170, 111-126.
-
-
-## Funding
-This research was funded by the European Commission (projects H2020-871042 ``SoBigData++'' and H2020-101006879 ``MobiDataLab''), the Government of Catalonia (ICREA Acad\`emia Prizes to J.Domingo-Ferrer and to D. S\'anchez, FI grant to N. Jebreel), and MCIN/AEI/ 10.13039/501100011033 and ``ERDF A way of making Europe'' under grant PID2021-123637NB-I00 ``CURLING''. 
-
+Install via pip:
+```bash
+pip install -r requirements.txt
